@@ -2,8 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alphabetical Article Sorter</title>
+  <style>
+    html {
+      box-sizing: border-box;
+      background: url('https://picsum.photos/1500/1000?image=881') center no-repeat;
+      background-size: cover;
+      min-height: 100vh;
+      font-family: sans-serif;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    #band {
+      list-style: square inside;
+      font-size: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    #band li {
+      padding: 20px;
+      border-bottom: 1px solid #efefef;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,19 +56,16 @@
       'An Old Dog'
     ];
 
-    function stripArticle(name) {
-      return name.replace(/^(a |an |the )/i, '').trim();
+    function strip(bandName) {
+      return bandName.replace(/^(a |an |the )/i, '').trim();
     }
 
     const sortedBands = bands.sort((a, b) =>
-      stripArticle(a).localeCompare(stripArticle(b))
+      strip(a).localeCompare(strip(b))
     );
 
-    const bandList = document.getElementById('band');
-
-    bandList.innerHTML = sortedBands
-      .map(band => `<li>${band}</li>`)
-      .join('');
+    document.querySelector('#band').innerHTML =
+      sortedBands.map(band => `<li>${band}</li>`).join('');
   </script>
 
 </body>
