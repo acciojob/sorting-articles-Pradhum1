@@ -1,17 +1,45 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
-	 <title>Alphabetical Article Sorter</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabetical Article Sorter</title>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+  <ul id="band"></ul>
+
+  <script>
+    const bands = [
+      'The Plot in You',
+      'The Devil Wears Prada',
+      'Pierce the Veil',
+      'Norma Jean',
+      'The Bled',
+      'Say Anything',
+      'The Midway State',
+      'We Came as Romans',
+      'Counterparts',
+      'Oh, Sleeper',
+      'A Skylit Drive',
+      'Anywhere But Here',
+      'An Old Dog'
+    ];
+
+    function stripArticle(name) {
+      return name.replace(/^(a |an |the )/i, '').trim();
+    }
+
+    const sortedBands = bands.sort((a, b) =>
+      stripArticle(a).localeCompare(stripArticle(b))
+    );
+
+    const bandList = document.getElementById('band');
+
+    bandList.innerHTML = sortedBands
+      .map(band => `<li>${band}</li>`)
+      .join('');
+  </script>
 
 </body>
-
 </html>
